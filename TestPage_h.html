@@ -1,0 +1,331 @@
+<!DOCTYPE HTML>
+<!--
+	Escape Velocity by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Care J</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/TestPageCustom.css') }}">
+		<link rel="icon" href="{{ url_for('static', filename='assets/images/carej.png') }}">
+
+		
+		<!--
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="../assets/css/TestPageCustom.css" />
+		<link rel="icon" href="../images/carej.png"/>		
+		-->
+		
+		<style>
+			@font-face {
+				font-family: 'TheJamsil5Bold';
+				src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+				font-weight: 700;
+				font-style: normal;
+			}
+
+			body { font-family: 'TheJamsil5Bold'; }
+
+		</style>
+
+		<!-- aos : fade in effect at scroll up -->
+		<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+	</head>
+
+	<body class="no-sidebar is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<section id="header" class="wrapper">
+
+					<!-- Logo -->
+						<div id="logo">
+							<h1>당뇨병 환자 맞춤형 식단 추천</h1>
+						</div>
+
+					<!-- Nav 메뉴바 시작 -->
+					<nav id="nav">
+						<ul>
+							<li><a href="../index.html">Home</a></li>
+							<li>
+								<a href="../멘탈테스트/MentalTest.html">멘탈 케어</a>
+								<ul>
+									<li><a href="../멘탈테스트/MentalTest.html">심리/성격 검사</a></li>
+									<li><a href="../멘탈테스트/MentalTest.html">우울증 검사</a></li>
+									<li><a href="../멘탈테스트/MentalTest.html">자존감 검사</a></li>
+								</ul>
+							</li>
+							<li class="current"><a href="../신체테스트/HealthTest.html">신체 케어</a></li>
+							<li><a href="../chatbot.html">J와 대화하기</a></li>
+							<li><a href="../map.html">상담 센터 찾기</a></li>
+							<li><a href="../마이페이지/mystatus.html">마이 페이지</a></li>
+						</ul>
+					</nav>
+				<!-- Nav 메뉴바 끝 -->
+
+				</section>
+
+			<!-- Main -->
+				<div id="main" class="wrapper style2">
+					
+					<div class="container">
+
+						<!-- Content -->
+							<div id="content" class="single-item">
+								<article class="box post">
+									
+									<form id="recommendation-form" action="/recommend" method="POST" onsubmit="submitRecommendationForm(event)">
+										<!-- 질문 div -->
+										<div class="testBox">
+										  <div class="number"> Q1. </div>
+										  <div class="question"> <h2>육류 선호도</h2> 
+										    <p class="small-text">선호함: 1, 선호하지 않음: 0</p></div>
+										  <div class="answer rb-box">
+											<input type="text" name="preference_meat" id="preference_meat">
+											<!--<input type="checkbox" name="preference_meat" id="preference_meat" value="0">
+											<input type="hidden" name="preference_meat" value="1">-->
+										  </div>
+										</div>
+									  
+										<div class="testBox" data-aos="fade-right">
+										  <div class="number"> Q2. </div>
+										  <div class="question"> <h2>어류 선호도</h2> 
+										    <p class="small-text">선호함: 1, 선호하지 않음: 0</p></div>
+										  <div class="answer rb-box">
+											<input type="text" name="preference_fish" id="preference_fish">
+											<!--<input type="checkbox" name="preference_fish" id="preference_fish" value="0">
+											<input type="hidden" name="preference_fish" value="1">-->
+										  </div>
+										</div>
+									  
+										<!-- 나머지 질문들도 동일한 형식으로 추가 -->
+										<div class="testBox" data-aos="fade-right">
+										  <div class="number"> Q3. </div>
+										  <div class="question"> <h2>면류 선호도</h2> 
+										    <p class="small-text">선호함: 1, 선호하지 않음: 0</p></div>
+										  <div class="answer rb-box">
+											<input type="text" name="preference_noodles" id="preference_noodles">
+											<!--<input type="checkbox" name="preference_noodles" id="preference_noodles" value="0">
+											<input type="hidden" name="preference_noodles" value="1">-->
+										  </div>
+										</div>
+									  
+										<div class="testBox" data-aos="fade-right">
+										  <div class="number"> Q4. </div>
+										  <div class="question"> <h2>밥류 선호도</h2> 
+										    <p class="small-text">선호함: 1, 선호하지 않음: 0</p></div>
+										  <div class="answer rb-box">
+											<input type="text" name="preference_rice" id="preference_rice">
+											<!--<input type="checkbox" name="preference_rice" id="preference_rice" value="0">
+											<input type="hidden" name="preference_rice" value="1">-->
+										  </div>
+										</div>
+									  
+										<div class="testBox" data-aos="fade-right">
+										  <div class="number"> Q5. </div>
+										  <div class="question"> <h2>매운맛 선호도</h2> 
+										    <p class="small-text">선호함: 1, 선호하지 않음: 0</p></div>
+										  <div class="answer rb-box">
+											<input type="text" name="preference_spicy" id="preference_spicy">
+											<!--<input type="checkbox" name="preference_spicy" id="preference_spicy" value="0">
+											<input type="hidden" name="preference_spicy" value="1">-->
+										  </div>
+										</div>
+									  
+										<div class="testBox" data-aos="fade-right">
+										  <div class="number"> Q6. </div>
+										  <div class="question"> <h2>성별</h2> 
+											<p class="small-text">남성, 여성 중 선택</p></div>
+										  <div class="answer rb-box">
+											<input type="text" name="gender" id="gender">
+										  </div>
+										</div>
+									  
+										<div class="testBox" data-aos="fade-right">
+										  <div class="number"> Q7. </div>
+										  <div class="question"> <h2>키</h2> </div>
+										  <div class="answer rb-box">
+											<input type="text" name="height" id="height">
+										  </div>
+										</div>
+									  
+										<div class="testBox" data-aos="fade-right">
+										  <div class="number"> Q8. </div>
+										  <div class="question"> <h2>몸무게</h2> </div>
+										  <div class="answer rb-box">
+											<input type="text" name="weight" id="weight">
+										  </div>
+										</div>
+									
+										<div class="testBox" data-aos="fade-right">
+										  <div class="number"> Q9. </div>
+										  <div class="question"> <h2>활동량</h2> 
+											<p class="small-text">가벼운 활동, 중증도 활동, 심한 활동 중 선택</p></div>
+										  <div class="answer rb-box">
+											<input type="text" name="activity_level" id="activity_level">
+										</div>
+										</div>
+									
+										<!-- 결과 확인 버튼 -->
+										<div style="text-align: center; margin-top: 3.7rem;">
+											<button type="submit" onclick="submitRecommendationForm(event)">결과 확인</button>
+										</div>
+									</form>
+
+									<!-- 결과 출력 영역 -->
+									<div id="result-container" style="text-align: center;"></div>
+									<!--<div id="result-container"></div>-->
+								</article>
+							</div>
+					</div>
+				</div>
+
+			<!-- Footer -->
+				<section id="footer" class="wrapper">
+					<div class="title">The Rest Of It</div>
+					<div class="container">
+						<header class="style1">
+							<h2>Ipsum sapien elementum portitor?</h2>
+							<p>
+								Sed turpis tortor, tincidunt sed ornare in metus porttitor mollis nunc in aliquet.<br />
+								Nam pharetra laoreet imperdiet volutpat etiam feugiat.
+							</p>
+						</header>
+						<div class="row">
+							<div class="col-6 col-12-medium">
+
+								<!-- Contact Form -->
+									<section>
+										<form method="post" action="#">
+											<div class="row gtr-50">
+												<div class="col-6 col-12-small">
+													<input type="text" name="name" id="contact-name" placeholder="Name" />
+												</div>
+												<div class="col-6 col-12-small">
+													<input type="text" name="email" id="contact-email" placeholder="Email" />
+												</div>
+												<div class="col-12">
+													<textarea name="message" id="contact-message" placeholder="Message" rows="4"></textarea>
+												</div>
+												<div class="col-12">
+													<ul class="actions">
+														<li><input type="submit" class="style1" value="Send" /></li>
+														<li><input type="reset" class="style2" value="Reset" /></li>
+													</ul>
+												</div>
+											</div>
+										</form>
+									</section>
+
+							</div>
+							<div class="col-6 col-12-medium">
+
+								<!-- Contact -->
+									<section class="feature-list small">
+										<div class="row">
+											<div class="col-6 col-12-small">
+												<section>
+													<h3 class="icon solid fa-home">Mailing Address</h3>
+													<p>
+														Untitled Corp<br />
+														1234 Somewhere Rd<br />
+														Nashville, TN 00000
+													</p>
+												</section>
+											</div>
+											<div class="col-6 col-12-small">
+												<section>
+													<h3 class="icon solid fa-comment">Social</h3>
+													<p>
+														<a href="../#">@untitled-corp</a><br />
+														<a href="../#">linkedin.com/untitled</a><br />
+														<a href="../#">facebook.com/untitled</a>
+													</p>
+												</section>
+											</div>
+											<div class="col-6 col-12-small">
+												<section>
+													<h3 class="icon solid fa-envelope">Email</h3>
+													<p>
+														<a href="../#">info@untitled.tld</a>
+													</p>
+												</section>
+											</div>
+											<div class="col-6 col-12-small">
+												<section>
+													<h3 class="icon solid fa-phone">Phone</h3>
+													<p>
+														(000) 555-0000
+													</p>
+												</section>
+											</div>
+										</div>
+									</section>
+
+							</div>
+						</div>
+						<div id="copyright">
+							<ul>
+								<li>&copy; Untitled.</li><li>Design: <a href="../http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+		</div>
+
+		<!-- Scripts -->
+
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/jquery.dropotron.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+			
+
+		<!-- 폼 제출 -->
+		<script>
+			function submitRecommendationForm(event) {
+				event.preventDefault(); // 기본 동작인 폼 제출을 막음
+
+				// 추천 식단 폼 데이터 가져오기
+				const form = document.getElementById('recommendation-form');
+				const formData = new FormData(form);
+				const requestData = Object.fromEntries(formData.entries());
+
+				fetch('/recommend', {
+				  method: 'POST',
+				  headers: {
+					'Content-Type': 'application/json',
+				  },
+				  body: JSON.stringify(requestData),
+				})
+				.then(function(response) {
+				  return response.json();
+				})
+				.then(function(data) {
+				  // 서버에서 반환된 결과 업데이트
+				  var result = data.result_str;
+				  var resultContainer = document.getElementById('result-container');
+				  resultContainer.innerText = result;
+				})
+				.catch(function(error) {
+				  console.error('Error:', error);
+				});
+				}
+			</script>	
+			
+			<!-- aos library -->
+			<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+			<script>
+			  AOS.init();
+			</script>
+
+			<script src="../assets/js/testPageCustom.js"></script>	
+	</body>
+</html>
